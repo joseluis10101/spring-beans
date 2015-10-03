@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    <bean id="musico" class="com.tecsup.spring.model.Musico"/>
+    
+    <bean id="charly" class="com.tecsup.spring.model.Musico">
+        <constructor-arg value="50"/>
+    </bean>
+    
+    
+    <bean id="instrumento" class="com.tecsup.spring.model.Instrumento">
+        <property name="nombre" value="Instrumento Generico" />
+    </bean>
+    
+    <bean id="paul" class="com.tecsup.spring.model.Musico">
+        <constructor-arg value="20"/>
+        <constructor-arg ref="instrumento"/>
+    </bean>
+    
+    <bean id="guitarra" class="com.tecsup.spring.model.Guitarra" primary="true">
+        <property name="nombre" value="Guitarra de Jimmy"/>
+    </bean>
+    
+    <bean id="john" class="com.tecsup.spring.model.Musico">
+        <property name="canciones" value="19"/>
+        <property name="nombre" value="John"/>
+        <property name="instrumento" ref="guitarra"/> 
+    </bean>
+    
+    
+    <bean id="miguel" class="com.tecsup.spring.model.Musico">
+        <property name="instrumento">
+            <bean class="com.tecsup.spring.model.Piano"/>
+        </property>
+    </bean>
+    
+    <bean id="pedro" class="com.tecsup.spring.model.Musico">
+        <property name="instrumentos">
+            <list>
+                <ref bean="guitarra"/>
+                <ref bean="instrumento"/>
+            </list>
+        </property>
+    </bean>
+    
+    <bean id="marco" class="com.tecsup.spring.model.Musico">
+        <property name="instrumento">
+            <null/>
+        </property>
+    </bean>
+    
+    <bean id="slash" class="com.tecsup.spring.model.Musico" autowire="byName"/>
+    
+    <bean id="jimmy" class="com.tecsup.spring.model.Musico" autowire="byType"/>
+    
+    <bean id="bob" class="com.tecsup.spring.model.Musico" autowire="constructor" />
+    
+    <bean id="lucho" class="com.tecsup.spring.model.Musico" autowire="default"/>
+       
+    
+</beans>
